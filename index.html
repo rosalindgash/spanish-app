@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Mastery - A1 to C2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .level-indicator {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .progress-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .progress-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .progress-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .content-area {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            min-height: 500px;
+        }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .exercise-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .exercise-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .exercise-area {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .question {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .option {
+            padding: 12px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+
+        .option.correct {
+            border-color: #48bb78;
+            background: #f0fff4;
+            color: #2f855a;
+        }
+
+        .option.incorrect {
+            border-color: #f56565;
+            background: #fff5f5;
+            color: #c53030;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .level-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .level-btn {
+            padding: 20px;
+            border: 3px solid #e2e8f0;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .level-btn.current {
+            border-color: #667eea;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .level-btn.completed {
+            border-color: #48bb78;
+            background: #f0fff4;
+            color: #2f855a;
+        }
+
+        .text-area {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .feedback.correct {
+            background: #f0fff4;
+            color: #2f855a;
+            border: 2px solid #48bb78;
+        }
+
+        .feedback.incorrect {
+            background: #fff5f5;
+            color: #c53030;
+            border: 2px solid #f56565;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .nav-tab {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+            
+            .progress-overview {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .exercise-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .exercise-card {
+                padding: 20px;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .level-indicator {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .progress-overview {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇪🇸 Spanish Mastery</h1>
+            <p>Your personal journey from A1 to C2 proficiency</p>
+            <div class="level-indicator" id="currentLevel">Current Level: A1</div>
+        </div>
+
+        <div class="progress-overview">
+            <div class="progress-card">
+                <h3>📖 Reading</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="readingProgress" style="width: 0%"></div>
+                </div>
+                <p id="readingScore">Score: 0/1000</p>
+            </div>
+            <div class="progress-card">
+                <h3>📚 Vocabulary</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="vocabularyProgress" style="width: 0%"></div>
+                </div>
+                <p id="vocabularyScore">Score: 0/1000</p>
+            </div>
+            <div class="progress-card">
+                <h3>🔄 Verbs</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="verbsProgress" style="width: 0%"></div>
+                </div>
+                <p id="verbsScore">Score: 0/1000</p>
+            </div>
+            <div class="progress-card">
+                <h3>✍️ Writing</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="writingProgress" style="width: 0%"></div>
+                </div>
+                <p id="writingScore">Score: 0/1000</p>
+            </div>
+            <div class="progress-card">
+                <h3>📝 Grammar</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="grammarProgress" style="width: 0%"></div>
+                </div>
+                <p id="grammarScore">Score: 0/1000</p>
+            </div>
+            <div class="progress-card">
+                <h3>🏆 Overall</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overallProgress" style="width: 0%"></div>
+                </div>
+                <p id="overallScore">Total: 0/5000</p>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('dashboard')">Dashboard</button>
+            <button class="nav-tab" onclick="showSection('reading')">Reading</button>
+            <button class="nav-tab" onclick="showSection('vocabulary')">Vocabulary</button>
+            <button class="nav-tab" onclick="showSection('verbs')">Verb Practice</button>
+            <button class="nav-tab" onclick="showSection('writing')">Writing</button>
+            <button class="nav-tab" onclick="showSection('grammar')">Grammar</button>
+            <button class="nav-tab" onclick="showSection('progress')">Progress</button>
+        </div>
+
+        <div class="content-area">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section">
+                <h2>¡Bienvenido a tu Aventura de Español!</h2>
+                <p>Master Spanish vocabulary, verbs, reading, writing, and grammar for confident communication. Tackle the specific challenges that hold back English speakers from fluency.</p>
+                
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                    <h3>🎯 Your Learning Focus</h3>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><strong>📚 Vocabulary:</strong> Contextual learning, thematic groups, regional variations</li>
+                        <li><strong>🔄 Verb Practice:</strong> Irregular verbs, gerunds (-ando/-iendo), stem-changing verbs</li>
+                        <li><strong>📖 Reading:</strong> News, stories, and cultural content from Spanish-speaking countries</li>
+                        <li><strong>✍️ Writing:</strong> Practical scenarios - emails, cultural descriptions, daily communication</li>
+                        <li><strong>📝 Grammar:</strong> Advanced concepts like subjunctive, ser/estar, regional variations</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                    <h4>💡 Designed for Common Spanish Learning Challenges:</h4>
+                    <p>✅ <strong>Vocabulary gaps</strong> - Learn words in context, not just translations<br>
+                    ✅ <strong>Irregular verbs</strong> - Master the verbs that appear in 80% of conversations<br>
+                    ✅ <strong>Gerunds</strong> - Stop confusing "estoy confuso" vs "estoy confundido"<br>
+                    ✅ <strong>Regional differences</strong> - Understand Spanish variations across countries</p>
+                </div>
+                
+                <h3 style="margin-top: 30px;">Select Your Current Level:</h3>
+                <div class="level-selector">
+                    <div class="level-btn current" onclick="selectLevel('A1')">
+                        <div>A1</div>
+                        <small>Beginner</small>
+                    </div>
+                    <div class="level-btn" onclick="selectLevel('A2')">
+                        <div>A2</div>
+                        <small>Elementary</small>
+                    </div>
+                    <div class="level-btn" onclick="selectLevel('B1')">
+                        <div>B1</div>
+                        <small>Intermediate</small>
+                    </div>
+                    <div class="level-btn" onclick="selectLevel('B2')">
+                        <div>B2</div>
+                        <small>Upper Int.</small>
+                    </div>
+                    <div class="level-btn" onclick="selectLevel('C1')">
+                        <div>C1</div>
+                        <small>Advanced</small>
+                    </div>
+                    <div class="level-btn" onclick="selectLevel('C2')">
+                        <div>C2</div>
+                        <small>Mastery</small>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="exercisesCompleted">0</div>
+                        <div>Exercises Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="streakDays">0</div>
+                        <div>Day Streak</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="timeSpent">0</div>
+                        <div>Hours Studied</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="accuracy">0%</div>
+                        <div>Accuracy</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <button class="btn" onclick="exportProgress()">
+                        📤 Export Progress
+                    </button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importProgress(event)">
+                    <button class="btn" onclick="document.getElementById('importFile').click()">
+                        📥 Import Progress
+                    </button>
+                    <button class="btn" onclick="resetProgress()" style="background: linear-gradient(45deg, #f56565, #c53030);">
+                        🔄 Reset All Progress
+                    </button>
+                    <button class="btn" onclick="saveProgress()">
+                        💾 Save Progress
+                    </button>
+                </div>
+                
+                <div style="background: #e6f3ff; border: 1px solid #b3d9ff; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                    <h4>💡 Cross-Device Sync with Google Drive:</h4>
+                    <p><strong>Export:</strong> Downloads your progress as a file. Save it to Google Drive.<br>
+                    <strong>Import:</strong> Upload the file from Google Drive on your other device.<br>
+                    <em>Your progress syncs across desktop/phone through your Google Drive!</em></p>
+                </div>
+            </div>
+
+            <!-- Reading Section -->
+            <div id="reading" class="section hidden">
+                <h2>📖 Reading Comprehension</h2>
+                <p>Master Spanish through diverse reading materials adapted to your level - from news articles to short stories.</p>
+                
+                <div class="exercise-grid">
+                    <div class="exercise-card" onclick="startExercise('reading', 'news')">
+                        <h3>📰 Current News</h3>
+                        <p>Read authentic news articles about Spanish culture, tourism, and current events.</p>
+                        <small>Real-world Spanish from Spain & Latin America</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('reading', 'stories')">
+                        <h3>📚 Short Stories</h3>
+                        <p>Enjoy captivating short stories that build vocabulary and cultural understanding.</p>
+                        <small>Fiction adapted for language learners</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('reading', 'academic')">
+                        <h3>🎓 Academic Texts</h3>
+                        <p>Challenge yourself with academic-style readings on culture, history, and travel.</p>
+                        <small>Advanced reading for B2-C2 levels</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('reading', 'travel')">
+                        <h3>✈️ Travel Culture</h3>
+                        <p>Learn about Spanish-speaking countries through travel guides and cultural articles.</p>
+                        <small>Perfect for travel preparation</small>
+                    </div>
+                </div>
+
+                <div id="readingExercise" class="exercise-area hidden">
+                    <!-- Exercise content will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Vocabulary Section -->
+            <div id="vocabulary" class="section hidden">
+                <h2>📚 Vocabulary Builder</h2>
+                <p>Build your word power with contextual learning, spaced repetition, and regional Spanish variations.</p>
+                
+                <div class="exercise-grid">
+                    <div class="exercise-card" onclick="startExercise('vocabulary', 'contextual')">
+                        <h3>🎯 Contextual Learning</h3>
+                        <p>Learn words in meaningful contexts and sentences, not just translations.</p>
+                        <small>Remember words by seeing them used naturally</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('vocabulary', 'themes')">
+                        <h3>🏪 Thematic Groups</h3>
+                        <p>Master vocabulary by themes: restaurant, shopping, transportation, emotions.</p>
+                        <small>Practical word families for daily life</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('vocabulary', 'advanced')">
+                        <h3>🎓 Academic & Professional</h3>
+                        <p>Higher-level vocabulary for work, news, and educated conversations.</p>
+                        <small>Bridge the gap to professional fluency</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('vocabulary', 'regional')">
+                        <h3>🌍 Regional Variations</h3>
+                        <p>Learn how Spanish varies across different countries and regions.</p>
+                        <small>Colombia, Spain, Mexico, Argentina differences</small>
+                    </div>
+                </div>
+
+                <div id="vocabularyExercise" class="exercise-area hidden">
+                    <!-- Exercise content will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Verb Practice Section -->
+            <div id="verbs" class="section hidden">
+                <h2>🔄 Verb Mastery</h2>
+                <p>Conquer irregular verbs, gerunds, and tricky conjugations that trip up learners.</p>
+                
+                <div class="exercise-grid">
+                    <div class="exercise-card" onclick="startExercise('verbs', 'irregular')">
+                        <h3>⚡ Irregular Verbs</h3>
+                        <p>Master the most important irregular verbs: ser, estar, tener, hacer, ir, etc.</p>
+                        <small>The verbs that appear in 80% of conversations</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('verbs', 'gerunds')">
+                        <h3>🏃‍♂️ Gerunds (-ando/-iendo)</h3>
+                        <p>Form and use gerunds correctly - the "-ing" equivalent in Spanish.</p>
+                        <small>Stop saying "Estoy confuso" instead of "Estoy confundido"</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('verbs', 'stemchanging')">
+                        <h3>🔄 Stem-Changing Verbs</h3>
+                        <p>Navigate e→ie, o→ue, e→i changes in context.</p>
+                        <small>Querer→quiero, poder→puedo, pedir→pido</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('verbs', 'contextual')">
+                        <h3>💬 Verbs in Context</h3>
+                        <p>Practice verb forms in real conversation situations.</p>
+                        <small>Stop translating, start thinking in Spanish</small>
+                    </div>
+                </div>
+
+                <div id="verbsExercise" class="exercise-area hidden">
+                    <!-- Exercise content will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Writing Section -->
+            <div id="writing" class="section hidden">
+                <h2>✍️ Writing Practice</h2>
+                <p>Develop your Spanish writing skills through guided exercises.</p>
+                
+                <div class="exercise-grid">
+                    <div class="exercise-card" onclick="startExercise('writing', 'sentence')">
+                        <h3>Sentence Construction</h3>
+                        <p>Build correct sentences using given vocabulary and grammar rules.</p>
+                        <small>Perfect for A1-B1 levels</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('writing', 'paragraph')">
+                        <h3>Paragraph Writing</h3>
+                        <p>Write coherent paragraphs on various topics with guided prompts.</p>
+                        <small>Ideal for B1-C1 levels</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('writing', 'essay')">
+                        <h3>Essay Composition</h3>
+                        <p>Compose structured essays on complex topics.</p>
+                        <small>Advanced B2-C2 practice</small>
+                    </div>
+                </div>
+
+                <div id="writingExercise" class="exercise-area hidden">
+                    <!-- Exercise content will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Grammar Section -->
+            <div id="grammar" class="section hidden">
+                <h2>📝 Advanced Grammar</h2>
+                <p>Master complex Spanish grammar concepts essential for travel fluency.</p>
+                
+                <div class="exercise-grid">
+                    <div class="exercise-card" onclick="startExercise('grammar', 'subjunctive')">
+                        <h3>🎭 The Subjunctive</h3>
+                        <p>Master the subjunctive mood - the key to sounding truly fluent in Spanish.</p>
+                        <small>WEIRDO verbs, emotions, and doubt</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('grammar', 'serusestar')">
+                        <h3>⚖️ Ser vs Estar</h3>
+                        <p>Advanced uses of these essential verbs beyond basic rules.</p>
+                        <small>Subjective impressions and context</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('grammar', 'porpara')">
+                        <h3>🔄 Por vs Para</h3>
+                        <p>Navigate these tricky prepositions with confidence in real situations.</p>
+                        <small>Travel contexts and idiomatic uses</small>
+                    </div>
+                    <div class="exercise-card" onclick="startExercise('grammar', 'cultural')">
+                        <h3>🌍 Cultural Grammar</h3>
+                        <p>Learn grammar patterns specific to different Spanish-speaking regions.</p>
+                        <small>Regional variations for travelers</small>
+                    </div>
+                </div>
+
+                <div id="grammarExercise" class="exercise-area hidden">
+                    <!-- Exercise content will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div id="progress" class="section hidden">
+                <h2>📊 Your Progress</h2>
+                <p>Track your learning journey and see how far you've come.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+                        <h3>Level Progress</h3>
+                        <div style="margin: 15px 0;">
+                            <strong>A1 Level: Starting</strong>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 0%;"></div></div>
+                        </div>
+                        <div style="margin: 15px 0;">
+                            <strong>A2 Level: Locked</strong>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 0%;"></div></div>
+                        </div>
+                        <div style="margin: 15px 0;">
+                            <strong>B1 Level: Locked</strong>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 0%;"></div></div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+                        <h3>Recent Achievements</h3>
+                        <div style="margin: 10px 0; padding: 10px; background: #f0fff4; border-radius: 8px; border-left: 4px solid #48bb78;">
+                            🎯 Started your Spanish journey!
+                        </div>
+                        <div style="margin: 10px 0; padding: 10px; background: #f7fafc; border-radius: 8px; border-left: 4px solid #667eea;">
+                            📱 App optimized for mobile learning
+                        </div>
+                        <div style="margin: 10px 0; padding: 10px; background: #fff5f5; border-radius: 8px; border-left: 4px solid #f56565;">
+                            💪 Ready to tackle vocabulary and verbs!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Application State
+        let currentLevel = 'A1';
+        let userProgress = {
+            reading: 0,
+            vocabulary: 0,
+            verbs: 0,
+            writing: 0,
+            grammar: 0,
+            exercises: 0,
+            streak: 0,
+            hours: 0,
+            accuracy: 0
+        };
+
+        let currentExercise = null;
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        // Exercise Data
+        const exercises = {
+            vocabulary: {
+                contextual: {
+                    A2: {
+                        title: "Vocabulary in Real Contexts",
+                        words: [
+                            {
+                                word: "conseguir",
+                                definition: "to get, obtain, achieve",
+                                context: "No pude conseguir boletos para el concierto.",
+                                english: "I couldn't get tickets for the concert.",
+                                usage: "Very common in Latin America for 'getting' things"
+                            },
+                            {
+                                word: "aprovechar",
+                                definition: "to take advantage of, make the most of",
+                                context: "Vamos a aprovechar el buen tiempo para salir.",
+                                english: "We're going to take advantage of the good weather to go out.",
+                                usage: "Essential for expressing opportunities"
+                            },
+                            {
+                                word: "madrugar",
+                                definition: "to get up early",
+                                context: "Tengo que madrugar mañana para el vuelo.",
+                                english: "I have to get up early tomorrow for the flight.",
+                                usage: "One word for 'getting up early' - very useful!"
+                            }
+                        ],
+                        questions: [
+                            {
+                                question: "¿Qué significa 'conseguir' en este contexto: 'No conseguí trabajo'?",
+                                options: ["to lose", "to get/obtain", "to want", "to forget"],
+                                correct: 1
+                            },
+                            {
+                                question: "¿Cuál es la mejor traducción de 'Let's take advantage of the sale'?",
+                                options: ["Vamos a comprar la venta", "Vamos a aprovechar la oferta", "Vamos a usar la venta", "Vamos a tomar la venta"],
+                                correct: 1
+                            }
+                        ]
+                    },
+                    B1: {
+                        title: "Advanced Contextual Vocabulary",
+                        words: [
+                            {
+                                word: "desenvolverse",
+                                definition: "to get by, manage oneself (in a situation)",
+                                context: "Después de 6 meses, ya me desenvuelvo bien en español.",
+                                english: "After 6 months, I can get by well in Spanish.",
+                                usage: "Perfect for describing language progress!"
+                            },
+                            {
+                                word: "ubicarse",
+                                definition: "to orient oneself, figure out where you are",
+                                context: "Al principio me costó ubicarme en la ciudad.",
+                                english: "At first it was hard for me to orient myself in the city.",
+                                usage: "Very common in Colombia and Latin America"
+                            },
+                            {
+                                word: "plata",
+                                definition: "money (colloquial in Latin America)",
+                                context: "No tengo plata para salir esta noche.",
+                                english: "I don't have money to go out tonight.",
+                                usage: "Much more common than 'dinero' in Colombia"
+                            }
+                        ],
+                        questions: [
+                            {
+                                question: "Si alguien dice 'Me desenvuelvo bien en español', significa que:",
+                                options: ["Habla español perfectamente", "Se las arregla/maneja bien en español", "Está aprendiendo español", "No habla español"],
+                                correct: 1
+                            }
+                        ]
+                    }
+                },
+                regional: {
+                    A2: {
+                        title: "Regional Spanish Variations",
+                        words: [
+                            {
+                                word: "coche/carro/auto",
+                                definition: "car",
+                                context: "España: coche, México/Colombia: carro, Argentina: auto",
+                                english: "car",
+                                usage: "Different countries prefer different words for 'car'"
+                            },
+                            {
+                                word: "plata/dinero",
+                                definition: "money",
+                                context: "Latin America: 'No tengo plata' vs Spain: 'No tengo dinero'",
+                                english: "money",
+                                usage: "'Plata' is very common in Latin America, 'dinero' more formal/Spanish"
+                            },
+                            {
+                                word: "chévere/guay",
+                                definition: "cool, awesome",
+                                context: "Latin America: '¡Qué chévere!' vs Spain: '¡Qué guay!'",
+                                english: "cool, awesome",
+                                usage: "Regional slang for expressing something is cool"
+                            },
+                            {
+                                word: "computadora/ordenador",
+                                definition: "computer",
+                                context: "América: computadora vs España: ordenador",
+                                english: "computer",
+                                usage: "Americas use 'computadora', Spain uses 'ordenador'"
+                            }
+                        ],
+                        questions: [
+                            {
+                                question: "¿Cómo se dice 'computer' en España?",
+                                options: ["computadora", "ordenador", "máquina", "aparato"],
+                                correct: 1
+                            },
+                            {
+                                question: "¿Qué palabra para 'dinero' es más común en América Latina?",
+                                options: ["dinero", "plata", "moneda", "efectivo"],
+                                correct: 1
+                            }
+                        ]
+                    }
+                },
+                themes: {
+                    A1: {
+                        title: "Restaurant Vocabulary - Essential Words",
+                        words: [
+                            { word: "mesero/camarero", definition: "waiter", example: "El mesero nos trajo la carta." },
+                            { word: "carta/menú", definition: "menu", example: "¿Podemos ver la carta, por favor?" },
+                            { word: "cuenta", definition: "bill/check", example: "La cuenta, por favor." },
+                            { word: "propina", definition: "tip", example: "¿Cuánto de propina dejo?" },
+                            { word: "plato", definition: "dish", example: "¿Cuál es el plato del día?" },
+                            { word: "entrada", definition: "appetizer", example: "Queremos una entrada para compartir." }
+                        ],
+                        questions: [
+                            {
+                                question: "¿Cómo pides ver el menú en español?",
+                                options: ["¿La cuenta?", "¿La carta?", "¿El plato?", "¿La entrada?"],
+                                correct: 1
+                            }
+                        ]
+                    }
+                }
+            },
+            verbs: {
+                irregular: {
+                    A2: {
+                        title: "High-Frequency Irregular Verbs",
+                        verbs: [
+                            {
+                                infinitive: "ser",
+                                meaning: "to be",
+                                present: ["soy", "eres", "es", "somos", "son"],
+                                preterite: ["fui", "fuiste", "fue", "fuimos", "fueron"],
+                                gerund: "siendo"
+                            },
+                            {
+                                infinitive: "estar",
+                                meaning: "to be",
+                                present: ["estoy", "estás", "está", "estamos", "están"],
+                                preterite: ["estuve", "estuviste", "estuvo", "estuvimos", "estuvieron"],
+                                gerund: "estando"
+                            },
+                            {
+                                infinitive: "tener",
+                                meaning: "to have",
+                                present: ["tengo", "tienes", "tiene", "tenemos", "tienen"],
+                                preterite: ["tuve", "tuviste", "tuvo", "tuvimos", "tuvieron"],
+                                gerund: "teniendo"
+                            }
+                        ],
+                        questions: [
+                            {
+                                question: "¿Cómo conjugas 'estar' en primera persona presente?",
+                                options: ["soy", "estoy", "tengo", "voy"],
+                                correct: 1
+                            },
+                            {
+                                question: "El pretérito de 'tener' (yo) es:",
+                                options: ["tenía", "tuve", "tendré", "tengo"],
+                                correct: 1
+                            }
+                        ]
+                    }
+                },
+                gerunds: {
+                    A2: {
+                        title: "Mastering Gerunds (-ando/-iendo)",
+                        explanation: "Gerunds in Spanish end in -ando (for -ar verbs) or -iendo (for -er/-ir verbs). Use them with 'estar' to show ongoing actions: 'Estoy hablando' = 'I am speaking'.",
+                        rules: [
+                            {
+                                rule: "-ar verbs → -ando",
+                                examples: ["hablar → hablando", "caminar → caminando", "estudiar → estudiando"]
+                            },
+                            {
+                                rule: "-er/-ir verbs → -iendo", 
+                                examples: ["comer → comiendo", "vivir → viviendo", "escribir → escribiendo"]
+                            },
+                            {
+                                rule: "Irregular gerunds",
+                                examples: ["leer → leyendo", "ir → yendo", "dormir → durmiendo"]
+                            }
+                        ],
+                        questions: [
+                            {
+                                question: "¿Cuál es el gerundio de 'hablar'?",
+                                options: ["habliendo", "hablando", "hablendo", "hablindo"],
+                                correct: 1
+                            },
+                            {
+                                question: "¿Cómo dices 'I am eating' en español?",
+                                options: ["Estoy comiendo", "Estoy comando", "Soy comiendo", "Tengo comiendo"],
+                                correct: 0
+                            },
+                            {
+                                question: "El gerundio irregular de 'leer' es:",
+                                options: ["leendo", "leyendo", "liendo", "leando"],
+                                correct: 1
+                            }
+                        ]
+                    }
+                }
+            },
+            reading: {
+                news: {
+                    A2: {
+                        title: "El Boom del Turismo en España",
+                        text: "España recibió 94 millones de turistas extranjeros el año pasado, un nuevo récord. Los visitantes gastaron 126 mil millones de euros, lo que representa más del 12% del PIB español. Los turistas estadounidenses y latinoamericanos han aumentado significativamente. Muchos viajeros ahora prefieren experiencias culturales y gastronómicas en lugar de solo ir a la playa. Las protestas contra el turismo masivo en Barcelona y otras ciudades han llevado al gobierno a promover destinos menos conocidos como Galicia y Extremadura.",
+                        questions: [
+                            {
+                                question: "¿Cuántos turistas recibió España el año pasado?",
+                                options: ["84 millones", "94 millones", "104 millones", "74 millones"],
+                                correct: 1
+                            },
+                            {
+                                question: "¿Qué porcentaje del PIB representa el turismo en España?",
+                                options: ["Más del 10%", "Exactamente 10%", "Más del 12%", "Menos del 10%"],
+                                correct: 2
+                            },
+                            {
+                                question: "¿Qué tipo de turismo prefieren ahora muchos viajeros?",
+                                options: ["Solo playa", "Aventura extrema", "Cultural y gastronómico", "Turismo de montaña"],
+                                correct: 2
+                            }
+                        ]
+                    },
+                    B1: {
+                        title: "La Revolución Cultural del Turismo Español",
+                        text: "El sector turístico español está experimentando una transformación profunda. Mientras que tradicionalmente el 80% de los turistas se concentraban en las costas mediterráneas e islas durante el verano, ahora se observa una tendencia hacia la desestacionalización y diversificación geográfica. Los destinos del norte como Galicia, Asturias y el País Vasco están ganando popularidad por su gastronomía única, paisajes verdes y cultura distintiva. El percebe gallego, los quesos de cueva asturianos y la sidra vasca atraen a turistas gourmet de todo el mundo. Esta evolución responde tanto a las protestas anti-turismo masivo en ciudades como Barcelona y Palma de Mallorca, como a una nueva mentalidad del viajero que busca autenticidad y sostenibilidad.",
+                        questions: [
+                            {
+                                question: "¿Qué fenómeno está experimentando el turismo español?",
+                                options: ["Declive económico", "Concentración costera", "Transformación y diversificación", "Enfoque solo en Madrid"],
+                                correct: 2
+                            },
+                            {
+                                question: "¿Qué regiones del norte se mencionan como emergentes?",
+                                options: ["Solo Galicia", "Galicia, Asturias y País Vasco", "Solo País Vasco", "Cantabria y Navarra"],
+                                correct: 1
+                            },
+                            {
+                                question: "¿Qué busca el nuevo perfil de turista?",
+                                options: ["Solo precio bajo", "Fiestas en la playa", "Autenticidad y sostenibilidad", "Hoteles de lujo únicamente"],
+                                correct: 2
+                            }
+                        ]
+                    }
+                },
+                stories: {
+                    A1: {
+                        title: "Ana y su Primer Viaje a España",
+                        text: "Ana es una estudiante de 22 años de Chicago. Este verano va a España por primera vez. Está muy nerviosa pero también emocionada. Ha estudiado español durante dos años en la universidad. Ana va a quedarse en Madrid durante una semana con una familia española. Después va a viajar a Barcelona y Sevilla. Quiere practicar su español, conocer la cultura y comer paella auténtica. Su profesora le ha dado una lista de frases útiles para viajar. Ana practica todos los días: '¿Dónde está la estación?' '¿Cuánto cuesta?' 'La cuenta, por favor.' Está segura de que va a ser una aventura increíble.",
+                        questions: [
+                            {
+                                question: "¿De dónde es Ana?",
+                                options: ["Madrid", "Barcelona", "Chicago", "Sevilla"],
+                                correct: 2
+                            },
+                            {
+                                question: "¿Cuánto tiempo ha estudiado español?",
+                                options: ["Un año", "Dos años", "Tres años", "Cuatro años"],
+                                correct: 1
+                            },
+                            {
+                                question: "¿Qué ciudades va a visitar Ana?",
+                                options: ["Solo Madrid", "Madrid y Barcelona", "Madrid, Barcelona y Sevilla", "Solo Barcelona"],
+                                correct: 2
+                            }
+                        ]
+                    }
+                },
+                academic: {
+                    B2: {
+                        title: "El Impacto Socioeconómico del Turismo en las Comunidades Locales",
+                        text: "El fenómeno turístico contemporáneo presenta una dualidad compleja en su impacto sobre las comunidades receptoras. Por un lado, constituye un motor económico fundamental que genera empleo directo e indirecto, atrae inversión extranjera y dinamiza sectores complementarios como la construcción, el transporte y la artesanía local. Sin embargo, este desarrollo económico puede conllevar efectos contraproducentes que alteran el tejido social y cultural autóctono. La gentrificación turística, caracterizada por el aumento exponencial de los precios inmobiliarios y la expulsión gradual de residentes locales, se ha convertido en un problema acuciante en destinos consolidados. Ciudades como Barcelona, Venecia o Amsterdam ejemplifican este dilema donde el éxito turístico amenaza paradójicamente la autenticidad cultural que inicialmente atraía a los visitantes. La sostenibilidad del modelo turístico requiere, por tanto, un equilibrio delicado entre rentabilidad económica y preservación de la identidad local.",
+                        questions: [
+                            {
+                                question: "¿Qué caracteriza a la gentrificación turística?",
+                                options: ["Aumento de residentes locales", "Disminución de precios", "Aumento de precios inmobiliarios y expulsión de locales", "Mejora del transporte público"],
+                                correct: 2
+                            },
+                            {
+                                question: "¿Qué ciudades se mencionan como ejemplos del dilema turístico?",
+                                options: ["Madrid, Roma y París", "Barcelona, Venecia y Amsterdam", "Londres, Berlín y Lisboa", "Sevilla, Florencia y Praga"],
+                                correct: 1
+                            },
+                            {
+                                question: "Según el texto, ¿qué requiere la sostenibilidad turística?",
+                                options: ["Solo rentabilidad económica", "Solo preservación cultural", "Equilibrio entre rentabilidad y preservación", "Eliminación del turismo"],
+                                correct: 2
+                            }
+                        ]
+                    }
+                },
+                travel: {
+                    A2: {
+                        title: "Expresiones Esenciales para Viajar por España",
+                        text: "Cuando viajas por España, estas frases te ayudarán mucho. En el aeropuerto: '¿Dónde está la puerta de embarque?' o 'He perdido mi equipaje.' En el hotel: 'Tengo una reserva a nombre de...' o '¿Tienen habitaciones disponibles?' En restaurantes: '¿Qué me recomienda?' y 'La cuenta, por favor.' Para direcciones: '¿Cómo llego a...?' y '¿Está lejos de aquí?' Si tienes problemas: 'No hablo español muy bien' y '¿Puede hablar más despacio?' Los españoles son muy amables con los turistas que intentan hablar español. No tengas miedo de cometer errores. La cortesía es muy importante: siempre di 'por favor', 'gracias' y 'disculpe.' También recuerda que en España se saluda con dos besos en las mejillas.",
+                        questions: [
+                            {
+                                question: "¿Qué dices si has perdido tu equipaje?",
+                                options: ["Tengo una reserva", "He perdido mi equipaje", "¿Dónde está la puerta?", "La cuenta, por favor"],
+                                correct: 1
+                            },
+                            {
+                                question: "¿Cómo se saluda tradicionalmente en España?",
+                                options: ["Con la mano", "Con un beso", "Con dos besos en las mejillas", "Con un abrazo"],
+                                correct: 2
+                            },
+                            {
+                                question: "¿Qué actitud tienen los españoles hacia los turistas que intentan hablar español?",
+                                options: ["Son impacientes", "Son muy amables", "No les importa", "Prefieren inglés"],
+                                correct: 1
+                            }
+                        ]
+                    }
+                }
+            },
+            writing: {
+                travel: {
+                    A1: {
+                        title: "Escribir un Email de Reserva de Hotel",
+                        prompts: [
+                            {
+                                instruction: "Escribe un email para reservar una habitación de hotel en Madrid para 3 noches.",
+                                example: "Estimados señores, Me llamo María García y quiero reservar una habitación doble para tres noches del 15 al 17 de julio. ¿Tienen disponibilidad? Gracias.",
+                                keywords: ["reservar", "habitación", "noches", "disponibilidad", "estimados señores"]
+                            }
+                        ]
+                    },
+                    A2: {
+                        title: "Describir una Experiencia de Viaje",
+                        prompts: [
+                            {
+                                instruction: "Describe tu primera visita a un restaurante español. Incluye qué pediste, cómo fue la experiencia y qué te gustó más.",
+                                example: "Ayer fui a un restaurante español por primera vez. Pedí paella valenciana y sangría. El camarero fue muy amable y me explicó los ingredientes. La paella estaba deliciosa, especialmente el arroz y los mariscos. Lo que más me gustó fue el ambiente familiar del restaurante.",
+                                keywords: ["restaurante", "pedí", "camarero", "delicioso", "ambiente", "primera vez"]
+                            }
+                        ]
+                    }
+                }
+            },
+            grammar: {
+                subjunctive: {
+                    B1: {
+                        title: "El Subjuntivo: Expresiones de Emoción y Duda",
+                        explanation: "El subjuntivo se usa después de expresiones que indican emoción, duda, o subjetividad. A diferencia del indicativo (que expresa hechos), el subjuntivo expresa lo que sentimos, dudamos o deseamos sobre una situación.",
+                        examples: [
+                            {
+                                indicative: "Juan viene mañana. (HECHO)",
+                                subjunctive: "Espero que Juan venga mañana. (DESEO)",
+                                explanation: "Con 'espero que' expresamos un deseo, no un hecho confirmado."
+                            },
+                            {
+                                indicative: "Llueve hoy. (HECHO)",
+                                subjunctive: "Dudo que llueva hoy. (DUDA)",
+                                explanation: "Con 'dudo que' expresamos incertidumbre, no certeza."
+                            }
+                        ],
+                        exercises: [
+                            {
+                                question: "Completa: 'Me alegra que tú _____ español.' (hablar)",
+                                options: ["hablas", "hables", "hablaste", "hablarás"],
+                                correct: 1,
+                                explanation: "Después de 'me alegra que' (emoción) usamos subjuntivo: hables."
+                            }
+                        ]
+                    },
+                    B2: {
+                        title: "Subjuntivo Avanzado: Condicionales Irreales",
+                        explanation: "El pluscuamperfecto del subjuntivo se usa en oraciones condicionales irreales del pasado. Formato: Si + hubiera/hubiese + participio + condicional compuesto. Expresa situaciones que no ocurrieron en el pasado.",
+                        examples: [
+                            {
+                                sentence: "Si hubiera estudiado más, habría aprobado el examen.",
+                                explanation: "No estudié suficiente (realidad pasada), por eso no aprobé. Es una situación irreal del pasado."
+                            },
+                            {
+                                sentence: "Si hubiéramos salido antes, no habríamos perdido el vuelo.",
+                                explanation: "No salimos antes (realidad), por eso perdimos el vuelo. Expresa arrepentimiento."
+                            }
+                        ],
+                        exercises: [
+                            {
+                                question: "Si yo _____ más dinero, habría viajado a España el año pasado.",
+                                options: ["tuviera", "hubiera tenido", "tengo", "tendría"],
+                                correct: 1,
+                                explanation: "Para situaciones irreales del pasado usamos: Si + hubiera tenido + habría viajado."
+                            }
+                        ]
+                    }
+                }
+            }
+        };
+
+        // Navigation Functions
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function selectLevel(level) {
+            currentLevel = level;
+            document.getElementById('currentLevel').textContent = `Current Level: ${level}`;
+            
+            // Update level selector UI
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('current');
+            });
+            event.target.classList.add('current');
+            
+            updateProgressDisplay();
+        }
+
+        function startExercise(skill, type) {
+            const exerciseData = exercises[skill]?.[type]?.[currentLevel];
+            if (!exerciseData) {
+                alert(`Exercise not available for ${currentLevel} level yet. Try a different level or check back soon for more content!`);
+                return;
+            }
+
+            currentExercise = { skill, type, data: exerciseData };
+            currentQuestionIndex = 0;
+            score = 0;
+
+            const exerciseContainer = document.getElementById(`${skill}Exercise`);
+            exerciseContainer.classList.remove('hidden');
+            
+            if (skill === 'reading') {
+                loadReadingExercise(exerciseData);
+            } else if (skill === 'writing') {
+                loadWritingExercise(exerciseData);
+            } else if (skill === 'grammar') {
+                loadGrammarExercise(exerciseData);
+            } else if (skill === 'vocabulary') {
+                loadVocabularyExercise(exerciseData);
+            } else if (skill === 'verbs') {
+                loadVerbsExercise(exerciseData);
+            }
+        }
+
+        function loadVocabularyExercise(data) {
+            const container = document.getElementById('vocabularyExercise');
+            container.innerHTML = `
+                <h3>${data.title}</h3>
+                <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; line-height: 1.6;">
+                    <h4>📚 New Vocabulary:</h4>
+                    ${data.words.map(word => `
+                        <div style="margin: 15px 0; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #4facfe;">
+                            <h4 style="color: #4facfe; margin-bottom: 5px;">${word.word}</h4>
+                            <p><strong>Meaning:</strong> ${word.definition}</p>
+                            <p><strong>Context:</strong> "${word.context}"</p>
+                            ${word.english ? `<p><strong>English:</strong> "${word.english}"</p>` : ''}
+                            ${word.usage ? `<p><em>💡 ${word.usage}</em></p>` : ''}
+                            ${word.example ? `<p><strong>Example:</strong> "${word.example}"</p>` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+                <div id="questionContainer">
+                    <!-- Questions will be loaded here -->
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn" onclick="checkAnswer()">Check Answer</button>
+                    <button class="btn" onclick="nextQuestion()" id="nextBtn" style="display: none;">Next Question</button>
+                    <button class="btn" onclick="finishExercise()" id="finishBtn" style="display: none;">Finish Exercise</button>
+                </div>
+                <div id="feedback"></div>
+            `;
+            
+            loadQuestion();
+        }
+
+        function loadVerbsExercise(data) {
+            const container = document.getElementById('verbsExercise');
+            container.innerHTML = `
+                <h3>${data.title}</h3>
+                <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; line-height: 1.6;">
+                    ${data.explanation ? `
+                        <h4>📚 Explanation:</h4>
+                        <p>${data.explanation}</p>
+                    ` : ''}
+                    
+                    ${data.verbs ? `
+                        <h4>🔄 Verb Conjugations:</h4>
+                        ${data.verbs.map(verb => `
+                            <div style="margin: 15px 0; padding: 15px; background: #f0fff4; border-radius: 8px; border-left: 4px solid #48bb78;">
+                                <h4 style="color: #2f855a;">${verb.infinitive} (${verb.meaning})</h4>
+                                <p><strong>Present:</strong> ${verb.present.join(', ')}</p>
+                                <p><strong>Preterite:</strong> ${verb.preterite.join(', ')}</p>
+                                <p><strong>Gerund:</strong> ${verb.gerund}</p>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+                    
+                    ${data.rules ? `
+                        <h4>📝 Rules:</h4>
+                        ${data.rules.map(rule => `
+                            <div style="margin: 15px 0; padding: 15px; background: #fff5f5; border-radius: 8px; border-left: 4px solid #f56565;">
+                                <h4 style="color: #c53030;">${rule.rule}</h4>
+                                <p><strong>Examples:</strong> ${rule.examples.join(', ')}</p>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+                </div>
+                <div id="questionContainer">
+                    <!-- Questions will be loaded here -->
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn" onclick="checkAnswer()">Check Answer</button>
+                    <button class="btn" onclick="nextQuestion()" id="nextBtn" style="display: none;">Next Question</button>
+                    <button class="btn" onclick="finishExercise()" id="finishBtn" style="display: none;">Finish Exercise</button>
+                </div>
+                <div id="feedback"></div>
+            `;
+            
+            loadQuestion();
+        }
+
+        function loadReadingExercise(data) {
+            const container = document.getElementById('readingExercise');
+            container.innerHTML = `
+                <h3>${data.title}</h3>
+                <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; line-height: 1.6;">
+                    <p><strong>Text:</strong></p>
+                    <p>${data.text}</p>
+                </div>
+                <div id="questionContainer">
+                    <!-- Questions will be loaded here -->
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn" onclick="checkAnswer()">Check Answer</button>
+                    <button class="btn" onclick="nextQuestion()" id="nextBtn" style="display: none;">Next Question</button>
+                    <button class="btn" onclick="finishExercise()" id="finishBtn" style="display: none;">Finish Exercise</button>
+                </div>
+                <div id="feedback"></div>
+            `;
+            
+            loadQuestion();
+        }
+
+        function loadWritingExercise(data) {
+            const container = document.getElementById('writingExercise');
+            const prompt = data.prompts[0]; // Start with first prompt
+            
+            container.innerHTML = `
+                <h3>${data.title}</h3>
+                <div class="question">
+                    <p><strong>Instruction:</strong> ${prompt.instruction}</p>
+                    <p><strong>Example:</strong> ${prompt.example}</p>
+                    <p><strong>Keywords to use:</strong> ${prompt.keywords.join(', ')}</p>
+                    <textarea class="text-area" id="writingInput" placeholder="Write your sentence here..."></textarea>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn" onclick="checkWriting()">Check Writing</button>
+                    <button class="btn" onclick="finishExercise()">Finish Exercise</button>
+                </div>
+                <div id="feedback"></div>
+            `;
+        }
+
+        function loadGrammarExercise(data) {
+            const container = document.getElementById('grammarExercise');
+            container.innerHTML = `
+                <h3>${data.title}</h3>
+                <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; line-height: 1.6;">
+                    <h4>📚 Explicación:</h4>
+                    <p>${data.explanation}</p>
+                    
+                    ${data.examples ? `
+                        <h4 style="margin-top: 20px;">✨ Ejemplos:</h4>
+                        ${data.examples.map(ex => `
+                            <div style="margin: 15px 0; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #667eea;">
+                                ${ex.indicative ? `<p><strong>Indicativo:</strong> ${ex.indicative}</p>` : ''}
+                                ${ex.subjunctive ? `<p><strong>Subjuntivo:</strong> ${ex.subjunctive}</p>` : ''}
+                                ${ex.sentence ? `<p><strong>Ejemplo:</strong> ${ex.sentence}</p>` : ''}
+                                <p><em>${ex.explanation}</em></p>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+                </div>
+                <div id="questionContainer">
+                    <!-- Questions will be loaded here -->
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn" onclick="checkAnswer()">Check Answer</button>
+                    <button class="btn" onclick="nextQuestion()" id="nextBtn" style="display: none;">Next Question</button>
+                    <button class="btn" onclick="finishExercise()" id="finishBtn" style="display: none;">Finish Exercise</button>
+                </div>
+                <div id="feedback"></div>
+            `;
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (!currentExercise) return;
+            
+            let question;
+            if (currentExercise.skill === 'grammar') {
+                question = currentExercise.data.exercises[currentQuestionIndex];
+            } else {
+                question = currentExercise.data.questions[currentQuestionIndex];
+            }
+            
+            const container = document.getElementById('questionContainer');
+            const totalQuestions = currentExercise.skill === 'grammar' ? 
+                currentExercise.data.exercises.length : 
+                currentExercise.data.questions.length;
+            
+            container.innerHTML = `
+                <div class="question">
+                    <h4>Question ${currentQuestionIndex + 1} of ${totalQuestions}</h4>
+                    <p>${question.question}</p>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <div class="option" onclick="selectOption(${index})">${option}</div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectOption(optionIndex) {
+            // Remove previous selections
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Select current option
+            document.querySelectorAll('.option')[optionIndex].classList.add('selected');
+            currentSelectedOption = optionIndex;
+        }
+
+        function checkAnswer() {
+            if (currentSelectedOption === undefined) {
+                alert('Please select an answer first!');
+                return;
+            }
+            
+            let question;
+            if (currentExercise.skill === 'grammar') {
+                question = currentExercise.data.exercises[currentQuestionIndex];
+            } else {
+                question = currentExercise.data.questions[currentQuestionIndex];
+            }
+            
+            const options = document.querySelectorAll('.option');
+            
+            // Show correct/incorrect feedback
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === currentSelectedOption && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Update score and show feedback
+            if (currentSelectedOption === question.correct) {
+                score++;
+                let feedbackText = 'Correct! Well done!';
+                if (question.explanation) {
+                    feedbackText += ` ${question.explanation}`;
+                }
+                showFeedback(feedbackText, 'correct');
+            } else {
+                let feedbackText = 'Incorrect. The correct answer is highlighted.';
+                if (question.explanation) {
+                    feedbackText += ` ${question.explanation}`;
+                }
+                showFeedback(feedbackText, 'incorrect');
+            }
+            
+            // Show appropriate button
+            const totalQuestions = currentExercise.skill === 'grammar' ? 
+                currentExercise.data.exercises.length : 
+                currentExercise.data.questions.length;
+                
+            if (currentQuestionIndex < totalQuestions - 1) {
+                document.getElementById('nextBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('finishBtn').style.display = 'inline-block';
+            }
+            
+            document.querySelector('button[onclick="checkAnswer()"]').style.display = 'none';
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            currentSelectedOption = undefined;
+            loadQuestion();
+            
+            // Reset buttons
+            document.getElementById('nextBtn').style.display = 'none';
+            document.querySelector('button[onclick="checkAnswer()"]').style.display = 'inline-block';
+            
+            // Clear feedback
+            document.getElementById('feedback').innerHTML = '';
+        }
+
+        function checkWriting() {
+            const input = document.getElementById('writingInput').value.trim();
+            if (!input) {
+                showFeedback('Please write something first!', 'incorrect');
+                return;
+            }
+            
+            // Simple writing check (in a real app, this would use NLP)
+            const keywords = currentExercise.data.prompts[0].keywords;
+            const hasKeywords = keywords.some(keyword => input.toLowerCase().includes(keyword.toLowerCase()));
+            
+            if (hasKeywords && input.length > 10) {
+                showFeedback('Great job! Your sentence looks good. Keep practicing!', 'correct');
+                updateProgress('writing', 10);
+            } else {
+                showFeedback('Try to include the suggested keywords and make sure your sentence is complete.', 'incorrect');
+            }
+        }
+
+        function finishExercise() {
+            let totalQuestions = 1; // Default for writing exercises
+            
+            if (currentExercise.skill === 'reading') {
+                totalQuestions = currentExercise.data.questions.length;
+            } else if (currentExercise.skill === 'grammar') {
+                totalQuestions = currentExercise.data.exercises.length;
+            }
+            
+            const percentage = Math.round((score / totalQuestions) * 100);
+            const points = Math.max(5, Math.round(percentage / 10));
+            
+            updateProgress(currentExercise.skill, points);
+            
+            showFeedback(
+                `Exercise completed! Score: ${percentage}%. You earned ${points} points!`, 
+                percentage >= 70 ? 'correct' : 'incorrect'
+            );
+            
+            // Hide exercise container after delay
+            setTimeout(() => {
+                document.getElementById(`${currentExercise.skill}Exercise`).classList.add('hidden');
+                currentExercise = null;
+            }, 3000);
+        }
+
+        function updateProgress(skill, points) {
+            userProgress[skill] += points;
+            userProgress.exercises++;
+            
+            // Calculate accuracy (simplified version)
+            if (userProgress.exercises > 0) {
+                const totalPoints = userProgress.reading + userProgress.vocabulary + userProgress.verbs + userProgress.writing + userProgress.grammar;
+                userProgress.accuracy = Math.round((totalPoints / (userProgress.exercises * 10)) * 100);
+            }
+            
+            // Update display
+            updateAllDisplays();
+            
+            // Auto-save progress
+            autoSave();
+        }
+
+        function updateProgressDisplay() {
+            // This would update the progress bars based on the selected level
+            // For now, just update the level indicator
+            const levelIndicator = document.getElementById('currentLevel');
+            levelIndicator.textContent = `Current Level: ${currentLevel}`;
+        }
+
+        function showFeedback(message, type) {
+            const feedback = document.getElementById('feedback');
+            feedback.innerHTML = `<div class="feedback ${type}">${message}</div>`;
+        }
+
+        // Global variables
+        let currentSelectedOption;
+
+        // Data Persistence Functions
+        function saveProgress() {
+            const data = {
+                currentLevel: currentLevel,
+                userProgress: userProgress,
+                lastSaved: new Date().toISOString()
+            };
+            
+            try {
+                localStorage.setItem('spanishLearningProgress', JSON.stringify(data));
+                showFeedback('Progress saved successfully!', 'correct');
+            } catch (error) {
+                showFeedback('Error saving progress. Please try again.', 'incorrect');
+            }
+        }
+
+        function exportProgress() {
+            const data = {
+                currentLevel: currentLevel,
+                userProgress: userProgress,
+                exportDate: new Date().toISOString(),
+                appVersion: "1.0"
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `spanish-progress-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showFeedback('Progress exported! Save the file to Google Drive for cross-device sync.', 'correct');
+        }
+
+        function importProgress(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    // Validate the imported data
+                    if (!data.currentLevel || !data.userProgress) {
+                        throw new Error('Invalid progress file format');
+                    }
+                    
+                    // Restore progress
+                    currentLevel = data.currentLevel;
+                    userProgress = { ...userProgress, ...data.userProgress };
+                    
+                    // Update displays
+                    updateAllDisplays();
+                    
+                    // Save to localStorage
+                    saveProgress();
+                    
+                    showFeedback(`Progress imported successfully! Level: ${currentLevel}, Total exercises: ${userProgress.exercises}`, 'correct');
+                    
+                } catch (error) {
+                    showFeedback('Error importing progress. Please check the file format.', 'incorrect');
+                    console.error('Import error:', error);
+                }
+            };
+            
+            reader.readAsText(file);
+            
+            // Reset the input
+            event.target.value = '';
+        }
+
+        function loadProgress() {
+            try {
+                const saved = localStorage.getItem('spanishLearningProgress');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    currentLevel = data.currentLevel || 'A1';
+                    userProgress = { ...userProgress, ...data.userProgress };
+                    updateAllDisplays();
+                    return true;
+                }
+            } catch (error) {
+                console.log('No saved progress found or error loading:', error);
+            }
+            return false;
+        }
+
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset ALL progress? This cannot be undone.')) {
+                // Reset all data
+                currentLevel = 'A1';
+                userProgress = {
+                    reading: 0,
+                    vocabulary: 0,
+                    verbs: 0,
+                    writing: 0,
+                    grammar: 0,
+                    exercises: 0,
+                    streak: 0,
+                    hours: 0,
+                    accuracy: 0
+                };
+                
+                // Clear localStorage
+                localStorage.removeItem('spanishLearningProgress');
+                
+                // Update all displays
+                updateAllDisplays();
+                
+                showFeedback('All progress has been reset!', 'correct');
+            }
+        }
+
+        function updateAllDisplays() {
+            // Update level indicator
+            document.getElementById('currentLevel').textContent = `Current Level: ${currentLevel}`;
+            
+            // Update progress bars and scores
+            const skills = ['reading', 'vocabulary', 'verbs', 'writing', 'grammar'];
+            skills.forEach(skill => {
+                const percentage = Math.min(100, (userProgress[skill] / 1000) * 100);
+                const progressBar = document.getElementById(`${skill}Progress`);
+                const scoreElement = document.getElementById(`${skill}Score`);
+                
+                if (progressBar) progressBar.style.width = percentage + '%';
+                if (scoreElement) scoreElement.textContent = `Score: ${userProgress[skill]}/1000`;
+            });
+            
+            // Update overall progress
+            const overall = userProgress.reading + userProgress.vocabulary + userProgress.verbs + userProgress.writing + userProgress.grammar;
+            const overallPercentage = Math.min(100, (overall / 5000) * 100);
+            const overallProgress = document.getElementById('overallProgress');
+            const overallScore = document.getElementById('overallScore');
+            
+            if (overallProgress) overallProgress.style.width = overallPercentage + '%';
+            if (overallScore) overallScore.textContent = `Total: ${overall}/5000`;
+            
+            // Update stats
+            document.getElementById('exercisesCompleted').textContent = userProgress.exercises;
+            document.getElementById('streakDays').textContent = userProgress.streak;
+            document.getElementById('timeSpent').textContent = userProgress.hours;
+            document.getElementById('accuracy').textContent = userProgress.accuracy + '%';
+            
+            // Update level selector
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('current');
+            });
+            
+            // Find and highlight current level
+            const levelBtns = document.querySelectorAll('.level-btn');
+            const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+            const currentIndex = levels.indexOf(currentLevel);
+            if (currentIndex >= 0 && levelBtns[currentIndex]) {
+                levelBtns[currentIndex].classList.add('current');
+            }
+        }
+
+        // Auto-save progress after each exercise
+        function autoSave() {
+            saveProgress();
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Spanish Learning App initialized!');
+            
+            // Load saved progress
+            const hasProgress = loadProgress();
+            
+            if (!hasProgress) {
+                // First time user - initialize displays
+                updateAllDisplays();
+            }
+            
+            console.log('Progress loaded:', userProgress);
+        });
+    </script>
+</body>
+</html>
